@@ -75,7 +75,7 @@
                            <children>
                               <HBox prefHeight="40.0" prefWidth="670.0">
                                  <children>
-                                    <ChoiceBox fx:id="method" prefHeight="40.0" prefWidth="84.0" HBox.hgrow="NEVER"/>
+                                    <ChoiceBox fx:id="method" prefHeight="40.0" prefWidth="84.0" HBox.hgrow="NEVER" />
                                     <TextField fx:id="urlField" prefHeight="40.0" prefWidth="251.0" HBox.hgrow="ALWAYS" />
                                     <Button mnemonicParsing="false" onAction="#sendRequest" prefHeight="37.0" prefWidth="103.0" text="Send" HBox.hgrow="NEVER" />
                                  </children>
@@ -86,10 +86,10 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView prefHeight="265.0" prefWidth="437.0">
+                                                <TableView fx:id="requestHeaders" prefHeight="234.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columns>
-                                                    <TableColumn prefWidth="116.5" text="C1" />
-                                                    <TableColumn minWidth="0.0" prefWidth="249.5" text="C2" />
+                                                    <TableColumn prefWidth="116.5" text="Name" />
+                                                    <TableColumn minWidth="0.0" prefWidth="249.5" text="Value" />
                                                   </columns>
                                                 </TableView>
                                              </children>
@@ -100,7 +100,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TextArea layoutX="23.0" layoutY="29.0" prefHeight="200.0" prefWidth="389.0" />
+                                                <TextArea fx:id="requestBody" layoutX="23.0" layoutY="29.0" prefHeight="234.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -109,16 +109,16 @@
                               </TabPane>
                               <TabPane fx:id="response" prefHeight="262.0" prefWidth="436.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                                 <tabs>
-                                    <Tab text="Untitled Tab">
+                                    <Tab text="Body">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TextArea fx:id="responseField" editable="false" layoutX="22.0" layoutY="8.0" />
+                                                <TextArea fx:id="responseField" editable="false" layoutX="22.0" layoutY="8.0" prefHeight="233.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                       </content>
                                     </Tab>
-                                  <Tab text="Untitled Tab 2">
+                                  <Tab text="Headers">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                     </content>
