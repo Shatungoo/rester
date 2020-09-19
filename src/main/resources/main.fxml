@@ -23,7 +23,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.Request">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.Request">
   <children>
     <MenuBar>
       <menus>
@@ -88,8 +88,8 @@
                                              <children>
                                                 <TableView fx:id="requestHeaders" prefHeight="234.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columns>
-                                                    <TableColumn prefWidth="116.5" text="Name" />
-                                                    <TableColumn minWidth="0.0" prefWidth="249.5" text="Value" />
+                                                    <TableColumn fx:id="name" prefWidth="116.5" text="Name" />
+                                                    <TableColumn fx:id="value" minWidth="0.0" prefWidth="249.5" text="Value" />
                                                   </columns>
                                                 </TableView>
                                              </children>
