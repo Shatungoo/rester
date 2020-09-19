@@ -36,13 +36,14 @@ public class Request {
     public TextArea requestBody;
 
     @FXML
-    public TableView<String> requestHeaders;
-    @FXML
-    public TableColumn<String, String> name;
-    @FXML
-    public TableColumn<String, String> value;
+    public TableView<String> requestHeadersTable;
 
-    final HashMap<String, String> headers = new HashMap<>();
+    final HashMap<String, String> requestHeaders = new HashMap<>();
+
+    @FXML
+    public TableView<String> responseHeadersTable;
+
+    final HashMap<String, String> responseHeaders = new HashMap<>();
 
     @FXML
     public void initialize() {
@@ -51,13 +52,23 @@ public class Request {
         method.getSelectionModel().select("GET");
 
         // headers
-        headers.put("key", "value");
-        requestHeaders.getItems().addAll(headers.keySet());
+        requestHeaders.put("key", "value");
+
+        setTableOptions(requestHeadersTable, requestHeaders);
+        setTableOptions(responseHeadersTable, responseHeaders);
+    }
+
+    void setTableOptions(TableView<String> tv, HashMap<String, String> map) {
+        var name = new TableColumn<String, String>("Name");
+        var value = new TableColumn<String, String>("Value");
+        tv.getColumns().addAll(name, value);
+
+        tv.getItems().addAll(map.keySet());
 
         name.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue()));
-        value.setCellValueFactory(cd -> new SimpleStringProperty(headers.get(cd.getValue())));
+        value.setCellValueFactory(cd -> new SimpleStringProperty(map.get(cd.getValue())));
 
-        requestHeaders.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        tv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         name.setCellFactory(TextFieldTableCell.forTableColumn());
         value.setCellFactory(TextFieldTableCell.forTableColumn());
     }
@@ -66,14 +77,21 @@ public class Request {
     public void sendRequest(final ActionEvent event) {
         final HttpClient client = HttpClient.newHttpClient();
         final var requestBuilder = HttpRequest.newBuilder()
-            .method(method.getValue(), BodyPublishers.ofString(requestBody.getText()))
-            .uri(URI.create(urlField.getText()));
-        headers.forEach((key, value) -> requestBuilder.header(key, value));
+                .method(method.getValue(), BodyPublishers.ofString(requestBody.getText()))
+                .uri(URI.create(urlField.getText()));
+        requestHeaders.forEach((key, value) -> requestBuilder.header(key, value));
         client.sendAsync(requestBuilder.build(), 
-            BodyHandlers
-                .ofString())
-                .thenApply(HttpResponse::body)
-                .thenAccept((body) -> responseField.setText(body))
+            BodyHandlers.ofString())
+                .thenApply(response -> { 
+                    responseHeaders.clear();
+                    response.headers().map().forEach((key, values) -> 
+                        responseHeaders.put(key, values.toString()));
+                    responseHeadersTable.getItems().setAll(responseHeaders.keySet());
+                    responseField.setText(response.body());
+                    return response; 
+                } )
+                // .thenApply(HttpResponse::body)
+                // .thenAccept((HttpResponse body) -> responseField.setText(body))
                 .join();
         // try {
         // final var response = client.send(request, BodyHandlers.ofString());

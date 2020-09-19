@@ -12,7 +12,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -76,7 +75,7 @@
                               <HBox prefHeight="40.0" prefWidth="670.0">
                                  <children>
                                     <ChoiceBox fx:id="method" prefHeight="40.0" prefWidth="84.0" HBox.hgrow="NEVER" />
-                                    <TextField fx:id="urlField" prefHeight="40.0" prefWidth="251.0" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="urlField" prefHeight="40.0" prefWidth="251.0" text="https://httpbin.org/get" HBox.hgrow="ALWAYS" />
                                     <Button mnemonicParsing="false" onAction="#sendRequest" prefHeight="37.0" prefWidth="103.0" text="Send" HBox.hgrow="NEVER" />
                                  </children>
                               </HBox>
@@ -86,12 +85,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="requestHeaders" editable="true" prefHeight="234.0" prefWidth="670.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                  <columns>
-                                                    <TableColumn fx:id="name" prefWidth="116.5" text="Name" />
-                                                    <TableColumn fx:id="value" minWidth="0.0" prefWidth="249.5" text="Value" />
-                                                  </columns>
-                                                </TableView>
+                                                <TableView fx:id="requestHeadersTable" editable="true" prefHeight="234.0" prefWidth="670.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -120,7 +114,10 @@
                                     </Tab>
                                   <Tab text="Headers">
                                     <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <TableView fx:id="responseHeadersTable" editable="true" layoutY="7.0" prefHeight="206.0" prefWidth="474.0" />
+                                             </children></AnchorPane>
                                     </content>
                                   </Tab>
                                 </tabs>
