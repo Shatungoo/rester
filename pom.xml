@@ -26,9 +26,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.1</version>
                 <configuration>
-                    <release>14</release>
+                    <release>15</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -37,6 +37,21 @@
                 <version>0.0.4</version>
                 <configuration>
                     <mainClass>com.helldaisy.App</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.gluonhq</groupId>
+                <artifactId>client-maven-plugin</artifactId>
+                <version>0.1.32</version>
+                <configuration>
+                    <target>host</target>
+                    <mainClass>com.helldaisy.App</mainClass>
+                    <bundlesList>
+                        <list>main</list>
+                    </bundlesList>
+                    <reflectionList>
+                        <list>com.helldaisy.Request</list>
+                    </reflectionList>
                 </configuration>
             </plugin>
         </plugins>
