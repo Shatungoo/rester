@@ -48,14 +48,14 @@ public class Request {
     @FXML
     public void initialize() {
         // Deafult method
-        method.getItems().addAll("GET", "POST", "PUT");
+        method.getItems().addAll("GET", "POST", "PUT", "DELETE","PATCH");
         method.getSelectionModel().select("GET");
 
         // headers
         requestHeaders.put("key", "value");
 
         setTableOptions(requestHeadersTable, requestHeaders);
-        setTableOptions(responseHeadersTable, responseHeaders);
+        setTableOptions(responseHeadersTable, responseHeaders);   
     }
 
     void setTableOptions(TableView<String> tv, HashMap<String, String> map) {
@@ -90,15 +90,7 @@ public class Request {
                     responseField.setText(response.body());
                     return response; 
                 } )
-                // .thenApply(HttpResponse::body)
-                // .thenAccept((HttpResponse body) -> responseField.setText(body))
                 .join();
-        // try {
-        // final var response = client.send(request, BodyHandlers.ofString());
-        // responseField.setText(response.body());
-        // } catch (IOException| InterruptedException e) {
-        // e.printStackTrace();
-        // }
     }
 
 }

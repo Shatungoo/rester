@@ -15,6 +15,7 @@ public class App extends Application {
         stage.setTitle("FXML TableView Example");
         Parent root  = FXMLLoader.load(getClass().getResource("/main.fxml"));
         stage.setScene(new Scene(root));
+        root.getStylesheets().add("dark-theme.css");
         stage.show();
     }
 
