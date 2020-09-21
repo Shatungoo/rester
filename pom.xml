@@ -37,6 +37,9 @@
                 <version>0.0.4</version>
                 <configuration>
                     <launcher>rester</launcher>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <noManPages>true</noManPages>
+                    <jlinkZipName>rester</jlinkZipName>
                     <mainClass>com.helldaisy.App</mainClass>
                 </configuration>
             </plugin>
