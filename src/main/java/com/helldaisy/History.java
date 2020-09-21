@@ -1,6 +1,12 @@
 package com.helldaisy;
 
-public class History {
+import java.io.Serializable;
+
+public class History implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -532317016218163920L;
     public Request request;
     public Response response;
 

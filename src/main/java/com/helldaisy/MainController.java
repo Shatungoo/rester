@@ -1,5 +1,11 @@
 package com.helldaisy;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.application.Platform;
@@ -57,17 +63,18 @@ public class MainController {
     public AnchorPane title;
 
     @FXML
-    public TableColumn<String, String> requestName, requestValue, responseName, responseValue; 
+    public TableColumn<String, String> requestName, requestValue, responseName, responseValue;
 
     private double xOffset = 0;
     private double yOffset = 0;
+
     @FXML
     public void initialize() {
         // Deafult method
-        method.getItems().addAll("GET", "POST", "PUT", "DELETE","PATCH");
+        method.getItems().addAll("GET", "POST", "PUT", "DELETE", "PATCH");
         method.getSelectionModel().select("GET");
 
-        title.setOnMousePressed(new EventHandler<MouseEvent>() { 
+        title.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 xOffset = event.getSceneX();
@@ -81,13 +88,19 @@ public class MainController {
         requestName.setCellFactory(TextFieldTableCell.forTableColumn());
         requestValue.setCellFactory(TextFieldTableCell.forTableColumn());
 
-
         responseHeadersTable.getItems().addAll(responseHeaders.keySet());
         responseName.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue()));
         responseValue.setCellValueFactory(cd -> new SimpleStringProperty(responseHeaders.get(cd.getValue())));
         responseName.setCellFactory(TextFieldTableCell.forTableColumn());
         responseValue.setCellFactory(TextFieldTableCell.forTableColumn());
         requestHeadersTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        try (var ois = new ObjectInputStream(new FileInputStream("d:\\address.ser"))){
+            var al = (ArrayList<History>)ois.readObject();
+            history.getItems().addAll(al);
+        } catch (IOException|ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         title.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
@@ -98,17 +111,17 @@ public class MainController {
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
-        
-        history.setCellFactory(history -> new ListCell<History>(){
+
+        history.setCellFactory(history -> new ListCell<History>() {
             @Override
             protected void updateItem(final History history, final boolean empty) {
-            if (empty || history == null) {
-                return;
+                if (empty || history == null) {
+                    return;
+                }
+                super.updateItem(history, empty);
+                final var request = history.request;
+                setText(request.method + " " + request.URL);
             }
-            super.updateItem(history, empty);
-            final var request = history.request;
-            setText(request.method + " " + request.URL);
-        }
         });
     }
 
@@ -116,11 +129,11 @@ public class MainController {
     public void historySelection(final MouseEvent event) {
         var request = history.getSelectionModel().getSelectedItem().request;
         var response = history.getSelectionModel().getSelectedItem().response;
-        setRequest(request);     
+        setRequest(request);
         setResponce(response);
     }
 
-    Request getRequest(){
+    Request getRequest() {
         final var request = new Request();
         request.method = method.getValue();
         request.URL = urlField.getText();
@@ -129,13 +142,13 @@ public class MainController {
         return request;
     }
 
-    void setRequest(Request request){
+    void setRequest(Request request) {
         method.setValue(request.method);
         urlField.setText(request.URL);
         requestBody.setText(request.body);
     }
 
-    void setResponce(Response response){
+    void setResponce(Response response) {
         responseHeaders.clear();
         response.headers.forEach((key, values) -> responseHeaders.put(key, values.toString()));
         responseHeadersTable.getItems().setAll(responseHeaders.keySet());
@@ -151,9 +164,32 @@ public class MainController {
     }
 
     @FXML
-    public void close(final ActionEvent event){
+    public void close(final ActionEvent event) {
+        try {
+            FileOutputStream fout = new FileOutputStream("d:\\address.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(new ArrayList(history.getItems()));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         final var source = (Node) event.getSource();
         final var stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    public void minimize(final ActionEvent event) {
+        final var source = (Node) event.getSource();
+        final var stage = (Stage) source.getScene().getWindow();
+      stage.setIconified(true);
+    }
+
+    @FXML
+    public void maximize(final ActionEvent event) {
+        final var source = (Node) event.getSource();
+        final var stage = (Stage) source.getScene().getWindow();
+        stage.setMaximized(!stage.isMaximized());
     }
 }

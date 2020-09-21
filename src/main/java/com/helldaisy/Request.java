@@ -1,5 +1,6 @@
 package com.helldaisy;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -7,7 +8,8 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.HashMap;
 
-public class Request {
+public class Request implements Serializable{
+    private static final long serialVersionUID = -4342680460664435265L;
     final HashMap<String, String> headers = new HashMap<>();
     public String body;
     public String URL;

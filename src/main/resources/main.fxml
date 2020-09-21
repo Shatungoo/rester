@@ -26,7 +26,13 @@
                   <Button mnemonicParsing="false" text="Settings" />
               </items>
             </ToolBar>
-            <Button layoutX="1136.0" layoutY="-1.0" mnemonicParsing="false" onAction="#close" prefHeight="33.0" prefWidth="66.0" styleClass="close" text="Х" AnchorPane.rightAnchor="-2.0" />
+            <HBox layoutX="1148.0" layoutY="-1.0" prefHeight="25.0" prefWidth="139.0" spacing="1.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#minimize" prefHeight="33.0" prefWidth="66.0" text="–" />
+                  <Button mnemonicParsing="false" onAction="#maximize" prefHeight="33.0" prefWidth="66.0" text="🗖" />
+                  <Button mnemonicParsing="false" onAction="#close" prefHeight="33.0" prefWidth="66.0" styleClass="close" text="Х" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
     <SplitPane dividerPositions="0.3" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
@@ -43,6 +49,15 @@
                   </HBox>
                   <TabPane fx:id="request" prefHeight="263.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
+                      <Tab text="Body">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TextArea fx:id="requestBody" layoutX="23.0" layoutY="29.0" prefHeight="234.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
                       <Tab text="Headers">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -52,15 +67,6 @@
                                           <TableColumn fx:id="requestName" prefWidth="230.0" text="Name" />
                                           <TableColumn fx:id="requestValue" minWidth="0.0" prefWidth="237.0" text="Value" />
                                        </columns></TableView>
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab text="Body">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <TextArea fx:id="requestBody" layoutX="23.0" layoutY="29.0" prefHeight="234.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                         </content>
