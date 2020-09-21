@@ -12,6 +12,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -23,11 +24,11 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.MainController">
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.MainController">
   <children>
       <AnchorPane fx:id="title">
          <children>
-          <MenuBar AnchorPane.rightAnchor="807.0">
+          <MenuBar prefHeight="25.0" prefWidth="122.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1078.0">
             <menus>
               <Menu mnemonicParsing="false" text="File">
                 <items>
@@ -48,16 +49,16 @@
             <Button layoutX="93.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="50.0" text="Х" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
-    <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="358.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.3" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
       <items>
-            <ListView fx:id="history" onMouseClicked="#historySelection" prefHeight="200.0" prefWidth="200.0" />
-            <VBox maxWidth="1.7976931348623157E308">
+            <ListView fx:id="history" onMouseClicked="#historySelection" prefHeight="751.0" prefWidth="175.0" SplitPane.resizableWithParent="false" />
+            <VBox maxWidth="1.7976931348623157E308" prefHeight="751.0" prefWidth="813.0">
                <children>
                   <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="670.0">
                      <children>
-                        <ChoiceBox fx:id="method" prefHeight="40.0" prefWidth="84.0" HBox.hgrow="NEVER" />
-                        <TextField fx:id="urlField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="251.0" text="https://httpbin.org/get" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#sendRequest" prefHeight="37.0" prefWidth="103.0" text="Send" HBox.hgrow="NEVER" />
+                        <ChoiceBox fx:id="method" prefHeight="40.0" prefWidth="112.0" HBox.hgrow="NEVER" />
+                        <TextField fx:id="urlField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="602.0" text="https://httpbin.org/get" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#sendRequest" prefHeight="46.0" prefWidth="103.0" text="Send" HBox.hgrow="NEVER" />
                      </children>
                   </HBox>
                   <TabPane fx:id="request" prefHeight="263.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
@@ -66,7 +67,11 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="requestHeadersTable" editable="true" prefHeight="234.0" prefWidth="670.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <TableView fx:id="requestHeadersTable" editable="true" prefHeight="234.0" prefWidth="670.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="requestName" prefWidth="230.0" text="Name" />
+                                          <TableColumn fx:id="requestValue" minWidth="0.0" prefWidth="237.0" text="Value" />
+                                       </columns></TableView>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -97,7 +102,11 @@
                         <content>
                               <StackPane>
                                  <children>
-                                    <TableView fx:id="responseHeadersTable" editable="true" prefHeight="206.0" prefWidth="474.0" />
+                                    <TableView fx:id="responseHeadersTable" editable="true" prefHeight="206.0" prefWidth="474.0">
+                                       <columns>
+                                          <TableColumn fx:id="responseName" prefWidth="231.0" text="Name" />
+                                          <TableColumn fx:id="responseValue" prefWidth="290.0" text="Value" />
+                                       </columns></TableView>
                                  </children>
                               </StackPane>
                         </content>

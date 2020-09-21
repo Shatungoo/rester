@@ -3,6 +3,7 @@ package com.helldaisy;
 import java.util.HashMap;
 
 import javafx.application.Platform;
+import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -55,6 +56,9 @@ public class MainController {
     @FXML
     public AnchorPane title;
 
+    @FXML
+    public TableColumn<String, String> requestName, requestValue, responseName, responseValue; 
+
     private double xOffset = 0;
     private double yOffset = 0;
     @FXML
@@ -63,8 +67,6 @@ public class MainController {
         method.getItems().addAll("GET", "POST", "PUT", "DELETE","PATCH");
         method.getSelectionModel().select("GET");
 
-        setTableOptions(requestHeadersTable, requestHeaders);
-        setTableOptions(responseHeadersTable, responseHeaders);   
         title.setOnMousePressed(new EventHandler<MouseEvent>() { 
             @Override
             public void handle(MouseEvent event) {
@@ -72,6 +74,22 @@ public class MainController {
                 yOffset = event.getSceneY();
             }
         });
+        requestHeaders.put("", "");
+        requestHeadersTable.getItems().addAll(requestHeaders.keySet());
+        requestName.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue()));
+        requestValue.setCellValueFactory(cd -> new SimpleStringProperty(requestHeaders.get(cd.getValue())));
+        requestHeadersTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        requestName.setCellFactory(TextFieldTableCell.forTableColumn());
+        requestValue.setCellFactory(TextFieldTableCell.forTableColumn());
+
+
+        responseHeadersTable.getItems().addAll(responseHeaders.keySet());
+        responseName.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue()));
+        responseValue.setCellValueFactory(cd -> new SimpleStringProperty(responseHeaders.get(cd.getValue())));
+        responseName.setCellFactory(TextFieldTableCell.forTableColumn());
+        responseValue.setCellFactory(TextFieldTableCell.forTableColumn());
+        requestHeadersTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
         title.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -93,21 +111,6 @@ public class MainController {
             setText(request.method + " " + request.URL);
         }
         });
-    }
-
-    void setTableOptions(final TableView<String> tv, final HashMap<String, String> map) {
-        final var name = new TableColumn<String, String>("Name");
-        final var value = new TableColumn<String, String>("Value");
-        tv.getColumns().addAll(name, value);
-
-        tv.getItems().addAll(map.keySet());
-
-        name.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue()));
-        value.setCellValueFactory(cd -> new SimpleStringProperty(map.get(cd.getValue())));
-
-        tv.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        name.setCellFactory(TextFieldTableCell.forTableColumn());
-        value.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     @FXML
