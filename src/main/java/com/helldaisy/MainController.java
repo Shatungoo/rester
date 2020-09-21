@@ -2,13 +2,16 @@ package com.helldaisy;
 
 import java.util.HashMap;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -19,6 +22,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class MainController {
 
@@ -48,6 +53,11 @@ public class MainController {
     public ListView<History> history;
 
     @FXML
+    public AnchorPane title;
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+    @FXML
     public void initialize() {
         // Deafult method
         method.getItems().addAll("GET", "POST", "PUT", "DELETE","PATCH");
@@ -55,7 +65,23 @@ public class MainController {
 
         setTableOptions(requestHeadersTable, requestHeaders);
         setTableOptions(responseHeadersTable, responseHeaders);   
-
+        title.setOnMousePressed(new EventHandler<MouseEvent>() { 
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        title.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                final var source = (Node) event.getSource();
+                final var stage = (Stage) source.getScene().getWindow();
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        
         history.setCellFactory(history -> new ListCell<History>(){
             @Override
             protected void updateItem(final History history, final boolean empty) {
@@ -103,5 +129,12 @@ public class MainController {
         responseHeadersTable.getItems().setAll(responseHeaders.keySet());
         responseField.setText(response.body);
         history.getItems().add(new History(request));
+    }
+
+    @FXML
+    public void close(final ActionEvent event){
+        final var source = (Node) event.getSource();
+        final var stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

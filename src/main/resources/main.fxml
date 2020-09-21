@@ -25,24 +25,29 @@
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.MainController">
   <children>
-    <MenuBar>
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
+      <AnchorPane fx:id="title">
+         <children>
+          <MenuBar AnchorPane.rightAnchor="807.0">
+            <menus>
+              <Menu mnemonicParsing="false" text="File">
+                <items>
+                  <MenuItem mnemonicParsing="false" text="Open…" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Preferences…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Quit" />
+                </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Help">
+                <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+              </Menu>
+            </menus>
+          </MenuBar>
+            <Button layoutX="93.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="50.0" text="Х" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="358.0" VBox.vgrow="ALWAYS">
       <items>
             <ListView fx:id="history" onMouseClicked="#historySelection" prefHeight="200.0" prefWidth="200.0" />
