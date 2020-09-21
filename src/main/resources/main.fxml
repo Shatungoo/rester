@@ -23,7 +23,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.MainController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.MainController">
   <children>
     <MenuBar>
       <menus>
@@ -45,17 +45,7 @@
     </MenuBar>
     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="358.0" VBox.vgrow="ALWAYS">
       <items>
-            <VBox prefHeight="200.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
-               <children>
-                  <AnchorPane prefHeight="54.0" prefWidth="222.0">
-                     <children>
-                        <Label layoutX="21.0" layoutY="19.0" text="200" />
-                        <Label layoutX="62.0" layoutY="18.0" prefHeight="18.0" prefWidth="145.0" text="httpbin.org" />
-                     </children>
-                  </AnchorPane>
-                  <ListView prefHeight="200.0" prefWidth="200.0" />
-               </children>
-            </VBox>
+            <ListView fx:id="history" onMouseClicked="#historySelection" prefHeight="200.0" prefWidth="200.0" />
             <VBox maxWidth="1.7976931348623157E308">
                <children>
                   <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="670.0">
