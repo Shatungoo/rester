@@ -23,7 +23,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="600.0" prefWidth="900.0" type="VBox" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.Request">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.Request">
   <children>
     <MenuBar>
       <menus>
@@ -131,4 +131,4 @@
       </padding>
     </HBox>
   </children>
-</fx:root>
+</VBox>

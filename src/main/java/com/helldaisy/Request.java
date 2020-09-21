@@ -76,9 +76,13 @@ public class Request {
     @FXML
     public void sendRequest(final ActionEvent event) {
         final HttpClient client = HttpClient.newHttpClient();
+        var url = urlField.getText();
+        var uri= (!url.toLowerCase().matches("^\\w+://.*"))
+            ? "http://" + url
+            :url;
         final var requestBuilder = HttpRequest.newBuilder()
                 .method(method.getValue(), BodyPublishers.ofString(requestBody.getText()))
-                .uri(URI.create(urlField.getText()));
+                .uri(URI.create(uri));
         requestHeaders.forEach((key, value) -> requestBuilder.header(key, value));
         client.sendAsync(requestBuilder.build(), 
             BodyHandlers.ofString())

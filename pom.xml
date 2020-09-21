@@ -6,8 +6,8 @@
     <version>0.1</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
@@ -28,7 +28,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <release>15</release>
+                    <!-- <release>15</release> -->
                 </configuration>
             </plugin>
             <plugin>
@@ -36,6 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
+                    <launcher>rester</launcher>
                     <mainClass>com.helldaisy.App</mainClass>
                 </configuration>
             </plugin>
@@ -46,6 +47,7 @@
                 <configuration>
                     <target>host</target>
                     <mainClass>com.helldaisy.App</mainClass>
+                    <!-- <graalvmHome>C:\Program Files\GraalVM\graalvm-ce-java11-20.2.0</graalvmHome> -->
                     <bundlesList>
                         <list>main</list>
                     </bundlesList>
