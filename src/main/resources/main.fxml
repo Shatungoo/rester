@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -16,37 +10,23 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.MainController">
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.MainController">
   <children>
-      <AnchorPane fx:id="title">
+      <AnchorPane fx:id="title" styleClass="background">
          <children>
-          <MenuBar prefHeight="25.0" prefWidth="122.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1078.0">
-            <menus>
-              <Menu mnemonicParsing="false" text="File">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="Open…" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Preferences…" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
-                </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Help">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-                </items>
-              </Menu>
-            </menus>
-          </MenuBar>
-            <Button layoutX="93.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="50.0" text="Х" AnchorPane.rightAnchor="0.0" />
+            <ToolBar prefHeight="40.0" prefWidth="325.0" AnchorPane.leftAnchor="0.0">
+              <items>
+                  <Button mnemonicParsing="false" text="Import" />
+                  <Button mnemonicParsing="false" text="Settings" />
+              </items>
+            </ToolBar>
+            <Button layoutX="1136.0" layoutY="-1.0" mnemonicParsing="false" onAction="#close" prefHeight="33.0" prefWidth="66.0" styleClass="close" text="Х" AnchorPane.rightAnchor="-2.0" />
          </children>
       </AnchorPane>
     <SplitPane dividerPositions="0.3" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
@@ -58,7 +38,7 @@
                      <children>
                         <ChoiceBox fx:id="method" prefHeight="40.0" prefWidth="112.0" HBox.hgrow="NEVER" />
                         <TextField fx:id="urlField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="602.0" text="https://httpbin.org/get" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#sendRequest" prefHeight="46.0" prefWidth="103.0" text="Send" HBox.hgrow="NEVER" />
+                        <Button mnemonicParsing="false" onAction="#sendRequest" prefHeight="46.0" prefWidth="103.0" styleClass="accentButton" text="Send" HBox.hgrow="NEVER" />
                      </children>
                   </HBox>
                   <TabPane fx:id="request" prefHeight="263.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE">
@@ -106,7 +86,8 @@
                                        <columns>
                                           <TableColumn fx:id="responseName" prefWidth="231.0" text="Name" />
                                           <TableColumn fx:id="responseValue" prefWidth="290.0" text="Value" />
-                                       </columns></TableView>
+                                       </columns>
+                                    </TableView>
                                  </children>
                               </StackPane>
                         </content>
@@ -117,22 +98,5 @@
             </VBox>
       </items>
     </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
-      <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
-          <font>
-            <Font size="11.0" fx:id="x3" />
-          </font>
-          <textFill>
-            <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
-          </textFill>
-        </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
-      </children>
-      <padding>
-        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-      </padding>
-    </HBox>
   </children>
 </VBox>

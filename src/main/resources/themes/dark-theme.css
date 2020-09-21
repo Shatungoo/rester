@@ -1,0 +1,9 @@
+.accentButton { 
+    button_background_color: #418db9;
+    text_color: white;
+}
+
+.close { 
+    button_background_color: #ad310b;
+    text_color: white;
+}

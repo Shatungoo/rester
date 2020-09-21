@@ -19,8 +19,8 @@ public class App extends Application {
         Parent root  = FXMLLoader.load(getClass().getResource("/main.fxml"));
         var scene = new Scene(root);
         stage.setScene(scene);
-        // root.getStylesheets().add("/themes/night.css");
         JMetro jMetro = new JMetro(Style.LIGHT);
+        root.getStylesheets().add("/themes/dark-theme.css");
         jMetro.setScene(scene); 
         stage.show();
     }

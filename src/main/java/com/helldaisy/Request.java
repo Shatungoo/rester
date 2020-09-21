@@ -22,11 +22,15 @@ public class Request {
             .method(method, BodyPublishers.ofString(body))
             .uri(URI.create(uri));
         headers.forEach((key, value) -> requestBuilder.header(key, value));
+        long startTime = System.currentTimeMillis();
         return client.sendAsync(requestBuilder.build(), BodyHandlers.ofString())
             .thenApply(response -> {
+
                 var responsePOJO = new Response();
+                responsePOJO.time = System.currentTimeMillis()-startTime;
                 response.headers().map().forEach((key, values) -> responsePOJO.headers.put(key, values.toString()));
                 responsePOJO.body = response.body();
+                responsePOJO.status = response.statusCode();
                 return responsePOJO;
         }).join();
     }
