@@ -74,7 +74,6 @@ public class MainController {
                 yOffset = event.getSceneY();
             }
         });
-        requestHeaders.put("", "");
         requestHeadersTable.getItems().addAll(requestHeaders.keySet());
         requestName.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue()));
         requestValue.setCellValueFactory(cd -> new SimpleStringProperty(requestHeaders.get(cd.getValue())));
@@ -115,23 +114,40 @@ public class MainController {
 
     @FXML
     public void historySelection(final MouseEvent event) {
-        System.out.println("clicked on " + history.getSelectionModel().getSelectedItem());
+        var request = history.getSelectionModel().getSelectedItem().request;
+        var response = history.getSelectionModel().getSelectedItem().response;
+        setRequest(request);     
+        setResponce(response);
     }
 
-    @FXML
-    public void sendRequest(final ActionEvent event) {
+    Request getRequest(){
         final var request = new Request();
         request.method = method.getValue();
         request.URL = urlField.getText();
         request.body = requestBody.getText();
         requestHeaders.forEach((key, value) -> request.headers.put(key, value));
-        final var response = request.send();
+        return request;
+    }
 
+    void setRequest(Request request){
+        method.setValue(request.method);
+        urlField.setText(request.URL);
+        requestBody.setText(request.body);
+    }
+
+    void setResponce(Response response){
         responseHeaders.clear();
         response.headers.forEach((key, values) -> responseHeaders.put(key, values.toString()));
         responseHeadersTable.getItems().setAll(responseHeaders.keySet());
         responseField.setText(response.body);
-        history.getItems().add(new History(request));
+    }
+
+    @FXML
+    public void sendRequest(final ActionEvent event) {
+        var request = getRequest();
+        final var response = request.send();
+        setResponce(response);
+        history.getItems().add(new History(request, response));
     }
 
     @FXML
