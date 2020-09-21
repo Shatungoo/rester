@@ -13,7 +13,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("FXML TableView Example");
+        stage.setTitle("Rester");
         Parent root  = FXMLLoader.load(getClass().getResource("/main.fxml"));
         stage.setScene(new Scene(root));
         root.getStylesheets().add("dark-theme.css");
