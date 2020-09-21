@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.*;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 public class App extends Application {
 
@@ -15,8 +17,11 @@ public class App extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Rester");
         Parent root  = FXMLLoader.load(getClass().getResource("/main.fxml"));
-        stage.setScene(new Scene(root));
-        root.getStylesheets().add("dark-theme.css");
+        var scene = new Scene(root);
+        stage.setScene(scene);
+        // root.getStylesheets().add("/themes/night.css");
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene); 
         stage.show();
     }
 
