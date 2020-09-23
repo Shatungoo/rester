@@ -1,20 +1,31 @@
 package com.helldaisy.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.helldaisy.Utils.Loader;
+
+import io.swagger.OpenAPIV3Parser;
+import io.swagger.v3.oas.models.OpenAPI;
+
 import com.helldaisy.*;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -45,6 +56,9 @@ public class Main {
     @FXML
     public RequestController requestControllerController;
 
+    @FXML
+    public TreeView<String> collections;
+
     private double xOffset = 0;
     private double yOffset = 0;
 
@@ -56,7 +70,16 @@ public class Main {
         history.getItems().addAll(settings);
 
         requestControllerController.main = this;
-    
+
+        TreeItem<String> germanics = new TreeItem<String>("Germanic");
+        germanics.getChildren().add(new TreeItem<String>("German"));
+        germanics.getChildren().add(new TreeItem<String>("English"));
+
+        collections.setRoot(germanics);
+        OpenAPI oa = new OpenAPIV3Parser().read("C:\\Users\\Leanid_Miron\\Downloads\\1.yaml");
+        
+
+
         responseHeadersTable.getItems().addAll(responseHeaders.keySet());
         responseName.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue()));
         responseValue.setCellValueFactory(cd -> new SimpleStringProperty(responseHeaders.get(cd.getValue())));
@@ -128,6 +151,36 @@ public class Main {
         stage.setX(event.getScreenX() - xOffset);
         stage.setY(event.getScreenY() - yOffset);
 
+    }
+
+    @FXML
+    public void openImport(final ActionEvent event){
+        System.out.println("openImport");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/import.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Import");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void openSetings(final ActionEvent event){
+        System.out.println("openImport");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/settings.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Settings");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
