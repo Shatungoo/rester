@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class Request implements Serializable{
     private static final long serialVersionUID = -4342680460664435265L;
-    final HashMap<String, String> headers = new HashMap<>();
+    public final HashMap<String, String> headers = new HashMap<>();
     public String body;
     public String URL;
     public String method;

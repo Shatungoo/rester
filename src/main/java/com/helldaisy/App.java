@@ -2,6 +2,8 @@ package com.helldaisy;
 
 import java.io.IOException;
 
+import com.helldaisy.Utils.ResizeHelper;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ public class App extends Application {
         stage.setScene(scene);
         JMetro jMetro = new JMetro(Style.LIGHT);
         root.getStylesheets().add("/themes/dark-theme.css");
+        ResizeHelper.addResizeListener(stage);
         jMetro.setScene(scene); 
         stage.show();
     }

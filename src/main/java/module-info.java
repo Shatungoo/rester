@@ -5,4 +5,6 @@ module com.helldaisy {
     requires java.net.http;
     requires org.jfxtras.styles.jmetro;
     exports com.helldaisy;
+    exports com.helldaisy.controllers;
+    
 }
