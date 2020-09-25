@@ -14,7 +14,7 @@
       </Tab>
       <Tab closable="false" text="Collections">
          <content>
-            <TreeView fx:id="collections" prefHeight="200.0" prefWidth="200.0" />
+            <TreeView fx:id="collections" onMouseClicked="#selectRequest" prefHeight="200.0" prefWidth="200.0" />
          </content>
       </Tab>
       <Tab closable="false" text="Tests">

@@ -38,7 +38,6 @@ public class TabPaneController {
             }
         });
 
-
         var root = new TreeItem<CollectionFX>(new CollectionFX(new Collection("RootCollection")));
         var col1 = new TreeItem<CollectionFX>(new CollectionFX(new Collection("Collection1")));
         root.getChildren().add(col1);
@@ -57,6 +56,15 @@ public class TabPaneController {
         main.setRequest (request);
         main.setResponse(response);
     }
+
+    
+    @FXML
+    public void selectRequest(final MouseEvent event) {
+        var selected = collections.getSelectionModel().getSelectedItem().getValue();
+        if (selected.collection != null) return;
+        main.setRequest (selected.request);
+    }
+    
 
     public void addHistory(History history){
         if (history == null ) return;
