@@ -99,7 +99,7 @@ public class RequestController {
     public void sendRequest(final ActionEvent event) {
         final var request = getRequest();
         final var response = request.send();
-        main.setResponce(response);
+        main.setResponse(response);
         main.history.getItems().add(new History(request, response));
     }
 }

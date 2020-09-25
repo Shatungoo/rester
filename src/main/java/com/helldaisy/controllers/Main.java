@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -33,10 +34,7 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 public class Main {
-    @FXML
-    public TableView<String> responseHeadersTable;
-
-    final HashMap<String, String> responseHeaders = new HashMap<>();
+    
 
     @FXML
     public ListView<History> history;
@@ -44,14 +42,17 @@ public class Main {
     @FXML
     public AnchorPane title;
 
-    @FXML
-    public TextArea responseField;
-
-    @FXML
-    public TableColumn<String, String> responseName, responseValue;
 
     @FXML
     public VBox request;
+
+    @FXML
+    public TabPane reponse;
+
+    
+    @FXML
+    public ResponseController responseControllerController;
+
     @FXML
     public RequestController requestControllerController;
 
@@ -77,20 +78,6 @@ public class Main {
         req.URL = "htttp//bash.org";
         col1.getChildren().add(new TreeItem<CollectionFX>(new CollectionFX(req)));
 
-        // germanics.getChildren().add(new TreeItem<String>("German"));
-        collections.setShowRoot(false);
-
-        collections.setRoot(root);
-        // OpenAPI oa = new OpenAPIV3Parser().read("");
-        
-
-
-        responseHeadersTable.getItems().addAll(responseHeaders.keySet());
-        responseName.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue()));
-        responseValue.setCellValueFactory(cd -> new SimpleStringProperty(responseHeaders.get(cd.getValue())));
-        responseName.setCellFactory(TextFieldTableCell.forTableColumn());
-        responseValue.setCellFactory(TextFieldTableCell.forTableColumn());
-
         history.setCellFactory(history -> new ListCell<History>() {
             @Override
             protected void updateItem(final History history, final boolean empty) {
@@ -103,6 +90,14 @@ public class Main {
                 }
             }
         });
+
+        // germanics.getChildren().add(new TreeItem<String>("German"));
+        collections.setShowRoot(false);
+
+        collections.setRoot(root);
+        // OpenAPI oa = new OpenAPIV3Parser().read("");
+        
+
     }
 
     @FXML
@@ -110,15 +105,13 @@ public class Main {
         var request = history.getSelectionModel().getSelectedItem().request;
         var response = history.getSelectionModel().getSelectedItem().response;
         requestControllerController.setRequest (request);
-        setResponce(response);
+        setResponse(response);
     }
 
-    public void setResponce(Response response) {
-        responseHeaders.clear();
-        response.headers.forEach((key, values) -> responseHeaders.put(key, values.toString()));
-        responseHeadersTable.getItems().setAll(responseHeaders.keySet());
-        responseField.setText(response.body);
+    public void setResponse(Response response) {
+        this.responseControllerController.setResponse(response);
     }
+
 
     @FXML
     public void close(final ActionEvent event) {
