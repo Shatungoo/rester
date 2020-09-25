@@ -100,6 +100,6 @@ public class RequestController {
         final var request = getRequest();
         final var response = request.send();
         main.setResponse(response);
-        main.history.getItems().add(new History(request, response));
+        main.addHistory(new History(request, response));
     }
 }

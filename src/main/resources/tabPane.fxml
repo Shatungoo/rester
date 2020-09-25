@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TreeView?>
 
-<HBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane prefHeight="33.0" prefWidth="735.0" HBox.hgrow="ALWAYS" />
-      <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="200.0" HBox.hgrow="NEVER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#minimize" prefHeight="33.0" prefWidth="66.0" text="–" />
-            <Button mnemonicParsing="false" onAction="#maximize" prefHeight="33.0" prefWidth="66.0" text="🗖" />
-            <Button mnemonicParsing="false" onAction="#close" prefHeight="33.0" prefWidth="66.0" styleClass="close" text="Х" />
-         </children>
-      </HBox>
-   </children>
-</HBox>
+<TabPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.controllers.TabPaneController">
+   <tabs>
+      <Tab closable="false" text="History">
+         <content>
+            <ListView fx:id="historyView" onMouseClicked="#historySelection" prefHeight="751.0" prefWidth="175.0" />
+         </content>
+      </Tab>
+      <Tab closable="false" text="Collections">
+         <content>
+            <TreeView fx:id="collections" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+      <Tab closable="false" text="Tests">
+         <content>
+            <TreeView fx:id="collections1" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

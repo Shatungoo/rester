@@ -1,40 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.controllers.Main">
   <children>
       <fx:include fx:id="titleController" source="title.fxml" />
-    <SplitPane dividerPositions="0.3" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.2" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
       <items>
-            <TabPane SplitPane.resizableWithParent="false">
-               <tabs>
-                  <Tab closable="false" text="History">
-                     <content>
-                        <ListView fx:id="history" onMouseClicked="#historySelection" prefHeight="751.0" prefWidth="175.0" />
-                     </content>
-                  </Tab>
-                  <Tab closable="false" text="Collections">
-                     <content>
-                        <TreeView fx:id="collections" prefHeight="200.0" prefWidth="200.0" />
-                     </content>
-                  </Tab>
-                  <Tab closable="false" text="Tests">
-                     <content>
-                        <TreeView fx:id="collections1" prefHeight="200.0" prefWidth="200.0" />
-                     </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
+            <fx:include fx:id="tabPaneController" source="tabPane.fxml" />
             <VBox maxWidth="1.7976931348623157E308" prefHeight="751.0" prefWidth="813.0">
                <children>
                   <fx:include fx:id="requestController" source="request.fxml" />
-                  <fx:include fx:id="responseController" source="response.fxml" />
+                  <fx:include fx:id="responseController" source="response.fxml" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
       </items>

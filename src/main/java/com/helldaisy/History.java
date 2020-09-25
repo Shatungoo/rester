@@ -11,15 +11,6 @@ public class History implements Serializable {
     public History(Request req){
         this.request = req;
     }
-
-    public History(){
-    }
-
-    
-    public History(Response resp){
-        this.response= resp;
-    }
-
     
     public History(Request req, Response resp){
         this.request = req;
