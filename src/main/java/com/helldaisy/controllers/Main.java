@@ -54,4 +54,9 @@ public class Main {
 	}
 
 
+	public void saveRequest(Request request) {
+        tabPaneController.addRequestToCollection(request);
+	}
+
+
 }

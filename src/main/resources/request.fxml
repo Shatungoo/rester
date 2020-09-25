@@ -17,8 +17,9 @@
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="670.0" VBox.vgrow="NEVER">
          <children>
             <ChoiceBox fx:id="method" prefHeight="40.0" prefWidth="112.0" HBox.hgrow="NEVER" />
-            <TextField fx:id="urlField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="602.0" text="https://httpbin.org/get" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="urlField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="489.0" text="https://httpbin.org/get" HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#sendRequest" prefHeight="46.0" prefWidth="103.0" styleClass="accentButton" text="Send" HBox.hgrow="NEVER" />
+            <Button mnemonicParsing="false" onAction="#saveRequest" prefHeight="46.0" prefWidth="103.0" text="Save" />
          </children>
       </HBox>
       <TabPane fx:id="request" prefHeight="263.0" prefWidth="670.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">

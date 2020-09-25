@@ -38,11 +38,6 @@ public class TabPaneController {
         });
 
         var root = new TreeItem<CollectionFX>(new CollectionFX(new Collection("RootCollection")));
-        var col1 = new TreeItem<CollectionFX>(new CollectionFX(new Collection("Collection1")));
-        root.getChildren().add(col1);
-        var req = new Request();
-        req.URL = "htttp//bash.org";
-        col1.getChildren().add(new TreeItem<CollectionFX>(new CollectionFX(req)));
         collections.setShowRoot(false);
         collections.setRoot(root);
     }
@@ -73,6 +68,11 @@ public class TabPaneController {
     public void addHistory(ArrayList<Exchange> history){
         history.removeIf(filter -> filter == null);
         historyView.getItems().addAll(history);
+    }
+
+    public void addRequestToCollection(Request request){
+        var col1 = new TreeItem<CollectionFX>(new CollectionFX(request));
+        collections.getRoot().getChildren().add(col1);
     }
     
 

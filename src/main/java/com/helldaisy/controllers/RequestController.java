@@ -103,4 +103,9 @@ public class RequestController {
         main.setResponse(response);
         main.addHistory(new Exchange(request, response));
     }
+
+    @FXML
+    public void saveRequest(final ActionEvent event) {
+        main.saveRequest(getRequest());
+    }
 }
