@@ -9,16 +9,16 @@ import javafx.fxml.FXML;
 public class Main {
     
     @FXML
-    public TitleController titleControllerController;
+    public TitleController titleController;
     
     @FXML
-    public ResponseController responseControllerController;
+    public ResponseController responseController;
 
     @FXML
-    public RequestController requestControllerController;
+    public RequestController requestController;
 
     @FXML
-    public TabPaneController tabPaneControllerController;
+    public TabPaneController tabPaneController;
 
 
 
@@ -28,29 +28,29 @@ public class Main {
             .ofNullable(Loader.load())
             .orElse(new ArrayList<Exchange> ());
 
-        titleControllerController.main = this;
-        tabPaneControllerController.main = this;
-        tabPaneControllerController.addHistory(settings);
-        tabPaneControllerController.main = this;
-        requestControllerController.main = this;
+        titleController.main = this;
+        tabPaneController.main = this;
+        tabPaneController.addHistory(settings);
+        tabPaneController.main = this;
+        requestController.main = this;
     }
 
 
     public void setResponse(Response response) {
-        this.responseControllerController.setResponse(response);
+        this.responseController.setResponse(response);
     }
 
     public void setRequest(Request request) {
-        this.requestControllerController.setRequest(request);
+        this.requestController.setRequest(request);
     }
 
     public void close(){
-        Loader.save(new ArrayList(tabPaneControllerController.historyView.getItems()));
+        Loader.save(new ArrayList(tabPaneController.historyView.getItems()));
     }
 
 
 	public void addHistory(Exchange history) {
-        tabPaneControllerController.addHistory(history);
+        tabPaneController.addHistory(history);
 	}
 
 

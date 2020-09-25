@@ -5,14 +5,14 @@
 
 <VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.controllers.Main">
   <children>
-      <fx:include fx:id="titleController" source="title.fxml" />
+      <fx:include fx:id="title" source="title.fxml" />
     <SplitPane dividerPositions="0.2" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
       <items>
-            <fx:include fx:id="tabPaneController" source="tabPane.fxml" />
+            <fx:include fx:id="tabPane" source="tabPane.fxml" />
             <VBox maxWidth="1.7976931348623157E308" prefHeight="751.0" prefWidth="813.0">
                <children>
-                  <fx:include fx:id="requestController" source="request.fxml" />
-                  <fx:include fx:id="responseController" source="response.fxml" VBox.vgrow="ALWAYS" />
+                  <fx:include fx:id="request" source="request.fxml" />
+                  <fx:include fx:id="response" source="response.fxml" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
       </items>
