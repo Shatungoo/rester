@@ -1,38 +1,24 @@
 package com.helldaisy.controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.helldaisy.Utils.Loader;
+import java.util.Optional;
 
 // import io.swagger.OpenAPIV3Parser;
 // import io.swagger.v3.oas.models.OpenAPI;
+import com.helldaisy.Collection;
+import com.helldaisy.CollectionFX;
+import com.helldaisy.History;
+import com.helldaisy.Request;
+import com.helldaisy.Response;
+import com.helldaisy.Utils.Loader;
 
-import com.helldaisy.*;
-
-import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import java.util.Optional;
 public class Main {
     
 
@@ -40,15 +26,7 @@ public class Main {
     public ListView<History> history;
 
     @FXML
-    public AnchorPane title;
-
-
-    @FXML
-    public VBox request;
-
-    @FXML
-    public TabPane reponse;
-
+    public TitleController titleControllerController;
     
     @FXML
     public ResponseController responseControllerController;
@@ -59,14 +37,14 @@ public class Main {
     @FXML
     public TreeView<CollectionFX> collections;
 
-    private double xOffset = 0;
-    private double yOffset = 0;
 
     @FXML
     public void initialize() {
         var settings = Optional
             .ofNullable(Loader.load())
             .orElse(new ArrayList<History> ());
+
+        titleControllerController.main = this;
         history.getItems().addAll(settings);
 
         requestControllerController.main = this;
@@ -112,73 +90,9 @@ public class Main {
         this.responseControllerController.setResponse(response);
     }
 
-
-    @FXML
-    public void close(final ActionEvent event) {
+    public void close(){
         Loader.save(new ArrayList(history.getItems()));
-        final var source = (Node) event.getSource();
-        final var stage = (Stage) source.getScene().getWindow();
-        stage.close();
     }
 
-    @FXML
-    public void minimize(final ActionEvent event) {
-        final var source = (Node) event.getSource();
-        final var stage = (Stage) source.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    public void maximize(final ActionEvent event) {
-        final var source = (Node) event.getSource();
-        final var stage = (Stage) source.getScene().getWindow();
-        stage.setMaximized(!stage.isMaximized());
-    }
-
-    @FXML
-    public void mousePress(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
-
-    }
-
-    @FXML
-    public void mouseDrag(MouseEvent event) {
-        final var source = (Node) event.getSource();
-        final var stage = (Stage) source.getScene().getWindow();
-        stage.setX(event.getScreenX() - xOffset);
-        stage.setY(event.getScreenY() - yOffset);
-
-    }
-
-    @FXML
-    public void openImport(final ActionEvent event){
-        System.out.println("openImport");
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/import.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Import");
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void openSetings(final ActionEvent event){
-        System.out.println("openImport");
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/settings.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Settings");
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
