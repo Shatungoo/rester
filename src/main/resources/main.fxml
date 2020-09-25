@@ -3,7 +3,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.controllers.Main">
+<VBox prefHeight="800.0" minHeight = "400" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.helldaisy.controllers.Main">
   <children>
       <fx:include fx:id="title" source="title.fxml" />
     <SplitPane dividerPositions="0.2" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
