@@ -23,10 +23,8 @@ public class Loader {
     }
 
     public static void save(ArrayList<Exchange> history){
-        try {
-            FileOutputStream fout = new FileOutputStream(PATH);
-            ObjectOutputStream oos = new ObjectOutputStream(fout);
-            oos.writeObject(new ArrayList(history));
+        try (var oos = new ObjectOutputStream(new FileOutputStream(PATH))){
+            oos.writeObject(new ArrayList<Exchange>(history));
         } catch (IOException e) {
             e.printStackTrace();
         }
