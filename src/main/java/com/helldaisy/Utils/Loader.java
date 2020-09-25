@@ -5,10 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
 import java.util.ArrayList;
 
-import com.helldaisy.Exchange;
+import com.helldaisy.model.Exchange;
 
 public class Loader {
 

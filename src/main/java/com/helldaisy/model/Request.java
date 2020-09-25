@@ -1,4 +1,4 @@
-package com.helldaisy;
+package com.helldaisy.model;
 
 import java.io.Serializable;
 import java.net.URI;

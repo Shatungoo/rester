@@ -2,7 +2,7 @@ package com.helldaisy.controllers;
 
 import java.util.HashMap;
 
-import com.helldaisy.*;
+import com.helldaisy.model.*;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

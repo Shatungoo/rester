@@ -2,11 +2,8 @@ package com.helldaisy.controllers;
 
 import java.util.ArrayList;
 
-import com.helldaisy.Collection;
-import com.helldaisy.CollectionFX;
-import com.helldaisy.Exchange;
-import com.helldaisy.Request;
-
+import com.helldaisy.model.*;
+import com.helldaisy.uiModel.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;

@@ -1,6 +1,8 @@
-package com.helldaisy;
+package com.helldaisy.uiModel;
 
-public class CollectionFX  {
+import com.helldaisy.model.*;
+
+public class CollectionFX {
 
     public Collection collection;
     

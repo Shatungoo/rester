@@ -1,6 +1,7 @@
 package com.helldaisy.controllers;
 
 import com.helldaisy.*;
+import com.helldaisy.model.*;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

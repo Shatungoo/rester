@@ -3,11 +3,8 @@ package com.helldaisy.controllers;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.helldaisy.Exchange;
-import com.helldaisy.Request;
-import com.helldaisy.Response;
+import com.helldaisy.model.*;
 import com.helldaisy.Utils.Loader;
-
 import javafx.fxml.FXML;
 public class Main {
     
