@@ -16,7 +16,7 @@ public class Loader {
     public static ArrayList<Exchange> load() {
         try (var ois = new ObjectInputStream(new FileInputStream(PATH))){
             return (ArrayList<Exchange>)ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
