@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,6 +27,9 @@ public class ResponseController {
     
     @FXML
     public TextArea responseField;
+
+    @FXML
+    public Label status, responseTime;
 
     @FXML
     public TableColumn<String, String> responseName, responseValue;
@@ -47,6 +51,9 @@ public class ResponseController {
         response.headers.forEach((key, values) -> responseHeaders.put(key, values.toString()));
         responseHeadersTable.getItems().setAll(responseHeaders.keySet());
         responseField.setText(response.body);
+        System.out.println(response.status);
+        status.setText( Integer.toString(response.status));
+        responseTime.setText( Long.toString(response.time));
     }
 
 }
