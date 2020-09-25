@@ -34,8 +34,7 @@ public class RequestController {
     public TableView<Pair> requestHeadersTable;
     
     ObservableList<Pair> requestHeaders = FXCollections
-        .observableArrayList(
-            new Pair("key", "value"));
+        .observableArrayList(new Pair("", ""));
 
     @FXML
     public TableColumn<String, String> responseName, responseValue;
@@ -54,19 +53,29 @@ public class RequestController {
     public void initialize() {
         method.getItems().addAll("GET", "POST", "PUT", "DELETE", "PATCH");
         method.getSelectionModel().select("GET");
-
         requestHeadersTable.getItems().addAll(requestHeaders);
         requestName.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().key));
         requestName.setCellFactory(TextFieldTableCell.forTableColumn());
         requestValue.setCellFactory(TextFieldTableCell.forTableColumn());
         requestValue.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().value));
         requestHeadersTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        // requestName.setOnEditCommit((CellEditEvent<Pair, String> event) -> {
-        //     var pos = event.getTablePosition();
-        //     String newFullName = event.getNewValue();
-        //     int row = pos.getRow();
-        //     var pair = event.getTableView().getItems().get(row);
-        // });
+        requestName.setOnEditCommit((CellEditEvent<Pair, String> event) -> {
+            var pos = event.getTablePosition();
+            var oldValue = event.getOldValue();
+            int row = pos.getRow();
+            var pair = event.getTableView().getItems().get(row);
+            pair.key = event.getNewValue();
+            if (oldValue.isEmpty())
+                event.getTableView().getItems().add(new Pair("", ""));
+        });
+
+        requestValue.setOnEditCommit((CellEditEvent<Pair, String> event) -> {
+            var pos = event.getTablePosition();
+            String newFullName = event.getNewValue();
+            int row = pos.getRow();
+            var pair = event.getTableView().getItems().get(row);
+            pair.value = newFullName;
+        });
 
         requestHeadersTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }

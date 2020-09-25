@@ -23,7 +23,9 @@ public class Request implements Serializable{
         final var requestBuilder = HttpRequest.newBuilder()
             .method(method, BodyPublishers.ofString(body))
             .uri(URI.create(uri));
-        headers.forEach((key, value) -> requestBuilder.header(key, value));
+        headers.forEach((key, value) -> {
+            if (!key.isEmpty()) requestBuilder.header(key, value);
+        });
         long startTime = System.currentTimeMillis();
         return client.sendAsync(requestBuilder.build(), BodyHandlers.ofString())
             .thenApply(response -> {

@@ -48,6 +48,11 @@
                         <TreeView fx:id="collections" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
+                  <Tab text="Tests">
+                     <content>
+                        <TreeView fx:id="collections1" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
                </tabs>
             </TabPane>
             <VBox maxWidth="1.7976931348623157E308" prefHeight="751.0" prefWidth="813.0">

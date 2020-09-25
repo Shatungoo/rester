@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 import com.helldaisy.Utils.Loader;
 
-import io.swagger.OpenAPIV3Parser;
-import io.swagger.v3.oas.models.OpenAPI;
+// import io.swagger.OpenAPIV3Parser;
+// import io.swagger.v3.oas.models.OpenAPI;
 
 import com.helldaisy.*;
 
@@ -23,7 +23,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -57,7 +56,7 @@ public class Main {
     public RequestController requestControllerController;
 
     @FXML
-    public TreeView<String> collections;
+    public TreeView<CollectionFX> collections;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -71,12 +70,11 @@ public class Main {
 
         requestControllerController.main = this;
 
-        TreeItem<String> germanics = new TreeItem<String>("Germanic");
-        germanics.getChildren().add(new TreeItem<String>("German"));
-        germanics.getChildren().add(new TreeItem<String>("English"));
+        var germanics = new TreeItem<CollectionFX>(new CollectionFX(new Collection()));
+        // germanics.getChildren().add(new TreeItem<String>("German"));
 
         collections.setRoot(germanics);
-        OpenAPI oa = new OpenAPIV3Parser().read("C:\\Users\\Leanid_Miron\\Downloads\\1.yaml");
+        // OpenAPI oa = new OpenAPIV3Parser().read("");
         
 
 
