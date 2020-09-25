@@ -2,17 +2,17 @@ package com.helldaisy;
 
 import java.io.Serializable;
 
-public class History implements Serializable {
+public class Exchange implements Serializable {
 
     private static final long serialVersionUID = -532317016218163920L;
     public Request request;
     public Response response;
 
-    public History(Request req){
+    public Exchange(Request req){
         this.request = req;
     }
     
-    public History(Request req, Response resp){
+    public Exchange(Request req, Response resp){
         this.request = req;
         this.response= resp;
     }

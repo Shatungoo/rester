@@ -8,22 +8,22 @@ import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
 
-import com.helldaisy.History;
+import com.helldaisy.Exchange;
 
 public class Loader {
 
     private static  String PATH= "d:\\address.ser";
 
-    public static ArrayList<History> load() {
+    public static ArrayList<Exchange> load() {
         try (var ois = new ObjectInputStream(new FileInputStream(PATH))){
-            return (ArrayList<History>)ois.readObject();
+            return (ArrayList<Exchange>)ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static void save(ArrayList<History> history){
+    public static void save(ArrayList<Exchange> history){
         try {
             FileOutputStream fout = new FileOutputStream(PATH);
             ObjectOutputStream oos = new ObjectOutputStream(fout);

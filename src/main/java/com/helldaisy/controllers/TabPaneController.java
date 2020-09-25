@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.helldaisy.Collection;
 import com.helldaisy.CollectionFX;
-import com.helldaisy.History;
+import com.helldaisy.Exchange;
 import com.helldaisy.Request;
 
 import javafx.fxml.FXML;
@@ -16,25 +16,27 @@ import javafx.scene.input.MouseEvent;
 
 public class TabPaneController {
     @FXML
-    public ListView<History> historyView;
+    public ListView<Exchange> historyView;
 
     @FXML
     public TreeView<CollectionFX> collections;
 
     public Main main;
 
-    public History history;
+    public Exchange history;
 
     @FXML
     public void initialize() {
-        historyView.setCellFactory(history -> new ListCell<History>() {
+        historyView.setCellFactory(history -> new ListCell<Exchange>() {
             @Override
-            protected void updateItem(final History history, final boolean empty) {
+            protected void updateItem(final Exchange history, final boolean empty) {
                 super.updateItem(history, empty);
                 if (history != null && history.request!=null) {
                     final var request = history.request;
                     setText(request.method + " " + request.URL);
-                }
+                    return;
+                } 
+                setText("");
             }
         });
 
@@ -66,12 +68,12 @@ public class TabPaneController {
     }
     
 
-    public void addHistory(History history){
+    public void addHistory(Exchange history){
         if (history == null ) return;
         historyView.getItems().add(history);
     }
 
-    public void addHistory(ArrayList<History> history){
+    public void addHistory(ArrayList<Exchange> history){
         history.removeIf(filter -> filter == null);
         historyView.getItems().addAll(history);
     }

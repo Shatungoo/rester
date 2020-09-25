@@ -3,7 +3,7 @@ package com.helldaisy.controllers;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.helldaisy.History;
+import com.helldaisy.Exchange;
 import com.helldaisy.Request;
 import com.helldaisy.Response;
 import com.helldaisy.Utils.Loader;
@@ -29,7 +29,7 @@ public class Main {
     public void initialize() {
         var settings = Optional
             .ofNullable(Loader.load())
-            .orElse(new ArrayList<History> ());
+            .orElse(new ArrayList<Exchange> ());
 
         titleControllerController.main = this;
         tabPaneControllerController.main = this;
@@ -52,7 +52,7 @@ public class Main {
     }
 
 
-	public void addHistory(History history) {
+	public void addHistory(Exchange history) {
         tabPaneControllerController.addHistory(history);
 	}
 
