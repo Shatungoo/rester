@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import com.helldaisy.model.*;
 import com.helldaisy.uiModel.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
@@ -37,9 +39,14 @@ public class TabPaneController {
             }
         });
 
+        MenuItem entry1 = new MenuItem("Delete");
+        entry1.setOnAction(ae -> System.out.println(ae));
+
+
         var root = new TreeItem<CollectionFX>(new CollectionFX(new Collection("RootCollection")));
         collections.setShowRoot(false);
         collections.setRoot(root);
+        collections.setContextMenu(new ContextMenu(entry1));
     }
 
     
