@@ -1,6 +1,7 @@
 package com.helldaisy.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.helldaisy.model.*;
 import com.helldaisy.uiModel.*;
@@ -75,7 +76,7 @@ public class TabPaneController {
         historyView.getItems().add(history);
     }
 
-    public void addHistory(ArrayList<Exchange> history){
+    public void addHistory(List<Exchange> history){
         history.removeIf(filter -> filter == null);
         historyView.getItems().addAll(history);
     }

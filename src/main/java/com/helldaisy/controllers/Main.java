@@ -1,6 +1,7 @@
 package com.helldaisy.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.helldaisy.model.*;
@@ -23,7 +24,7 @@ public class Main {
 
     @FXML
     public void initialize() {
-        var settings = Optional
+        List<Exchange> settings = Optional
             .ofNullable(Loader.load())
             .orElse(new ArrayList<Exchange> ());
 
