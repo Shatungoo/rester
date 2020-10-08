@@ -94,6 +94,8 @@ public class RequestController {
         method.setValue(request.method);
         urlField.setText(request.URL);
         requestBody.setText(request.body);
+        requestHeadersTable.getSelectionModel().getSelectedItems().clear();
+        request.headers.forEach((k,v) -> requestHeadersTable.getItems().add(new Pair(k, v)));
     }
 
     @FXML

@@ -21,7 +21,6 @@ public class Main {
     public TabPaneController tabPaneController;
 
 
-
     @FXML
     public void initialize() {
         var settings = Optional

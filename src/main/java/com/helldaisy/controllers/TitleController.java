@@ -78,12 +78,17 @@ public class TitleController {
     @FXML
     public void openImport(final ActionEvent event){
         System.out.println("openImport");
+        
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/import.fxml"));
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/import.fxml"));
+            Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Import");
             stage.setScene(new Scene(root));
             stage.show();
+            ImportController controller = loader.<ImportController>getController();
+            controller.main = main;
         }
         catch (IOException e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.helldaisy.controllers;
 
 import com.helldaisy.*;
+import com.helldaisy.model.Request;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,10 +19,21 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 public class ImportController {
 
+    @FXML
+    public TextArea rawText;
     
+    public Main main;
+
     @FXML
     public void initialize() {
         
+    }
+
+    @FXML
+    public void importFromCurl(final ActionEvent event){
+        var curl = rawText.getText();
+        Request request = Request.importFromCurl(curl);
+        main.setRequest(request);
     }
 
 }
