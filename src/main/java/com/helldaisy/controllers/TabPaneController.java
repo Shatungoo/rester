@@ -40,7 +40,10 @@ public class TabPaneController {
         });
 
         MenuItem entry1 = new MenuItem("Delete");
-        entry1.setOnAction(ae -> System.out.println(ae));
+        entry1.setOnAction(ae -> {
+            var selectedItem = collections.getSelectionModel().getSelectedItem();
+            selectedItem.getParent().getChildren().remove(selectedItem);
+        });
 
 
         var root = new TreeItem<CollectionFX>(new CollectionFX(new Collection("RootCollection")));
