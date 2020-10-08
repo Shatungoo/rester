@@ -27,7 +27,7 @@ public class Main {
         List<Exchange> settings = Optional
             .ofNullable(Loader.load())
             .orElse(new ArrayList<Exchange> ());
-
+Collection.importFromSwagger("C:/Users/Leanid_Miron/Downloads/1.yaml");
         titleController.main = this;
         tabPaneController.main = this;
         tabPaneController.addHistory(settings);

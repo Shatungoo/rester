@@ -36,4 +36,11 @@ public class ImportController {
         main.setRequest(request);
     }
 
+    @FXML
+    public void importFromSwagger(final ActionEvent event){
+        var curl = rawText.getText();
+        Request request = Request.importFromCurl(curl);
+        main.setRequest(request);
+    }
+
 }
